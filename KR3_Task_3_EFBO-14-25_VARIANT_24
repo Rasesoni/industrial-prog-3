@@ -1,1 +1,23 @@
-
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+int main() {
+	ifstream in("input3.txt");
+	ofstream out("output3.txt");
+	string strfirst;
+	getline(in, strfirst); // берет символы из in и сохраняет его strfirst
+	string strreverse = strfirst;
+	reverse(strreverse.begin(), strreverse.end());
+	if (strfirst == strreverse) {
+		out << "yes, pallindrome";
+	}
+	else {
+		out << "No, pallindrome";
+	}
+	in.close();
+	out.close();
+	return 0;
+}
