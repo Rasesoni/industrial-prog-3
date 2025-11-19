@@ -1,37 +1,28 @@
 #include <iostream>
 #include <fstream>
-
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
-    ifstream in("task2.txt");
-    
-    double numbers[1000]; 
-    int count = 0;        
-    while (in >> numbers[count]) {
-        count++;
-        if (count >= 1000){ 
-        break;
-        }
-    }
-    in.close();
-    for (int i = 0; i < count - 1; i++) {
-        for (int j = 0; j < count - i - 1; j++) {
-            if (numbers[j] > numbers[j + 1]) {
-                double temp = numbers[j];
-                numbers[j] = numbers[j + 1];
-                numbers[j + 1] = temp;
-            }
-        }
-    }
-    double median;
-    if (count % 2 == 1) {
-        median = numbers[count / 2];
-    } else {
-        median = (numbers[count / 2 - 1] + numbers[count / 2]) / 2;
-    }
+    ifstream in("input.txt");
     ofstream out("output.txt");
+    vector < int > number;
+    int x;
+    while (in >> x) {
+        number.push_back(x);
+    }
+    sort(number.begin(), number.end()); // функция
+    int median = 0;
+    int n = number.size();
+    if (n % 2 == 0) {
+        median = number[n / 2];
+    }
+    else {
+        median = number[(n-1)/2];
+    }
     out << median;
-    out.close();
     return 0;
+    in.close();
+    out.close();
 }
